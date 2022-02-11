@@ -2,23 +2,35 @@ import React, { useState } from 'react'
 import axios from 'axios';
 
 export default function AppFunctional(props) {
-  const [grid, setGrid] = useState('');
+  const [grid, setGrid] = useState([]);
 
-  // const posArray = [
-  //   [0, 0, 0],
-  //   [0, 0, 0],
-  //   [0, 0, 0]
-  // ]
+  const state = {
+    form: [{ x: 2, y: 2, steps: 0 }],
+    email: '',
+    error: '',
+  }
+
+  const posArray = [
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0]
+  ]
 
   // posArray[2][0]
 
-  const handleChange = (e) => {
-    setGrid(e.target.value)
+  const handleChange = evt => {
+    const { value, steps } = evt.target;
+      console.log(value, steps);
+      this.setState({
+        ...this.state,
+        [steps]: value,
+      })
+    // setGrid(evt.target.value)
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    props.handleAddTodo(grid);
+    props.posArray(grid);
   }
 
   // console.log(AppFunctional);

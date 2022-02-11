@@ -5,9 +5,9 @@ export default class AppClass extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      xoffset: 0,
-      yoffset: 0,
-      delta: 10
+      x: 2,
+      y: 2,
+      steps: 0,
     }
   }
 
@@ -48,7 +48,7 @@ export default class AppClass extends React.Component {
   }
 
   render() {
-    // console.log(this.props)
+    console.log(this.props)
 
     const { className } = this.props
     return (
