@@ -94,14 +94,14 @@ export default class AppClass extends React.Component {
           <h3 id="message"></h3>
         </div>
         <div id="keypad">
-          <button id="left">LEFT</button>
+          <button onClick={this.onChange} id="left">LEFT</button>
           <button id="up">UP</button>
           <button id="right">RIGHT</button>
           <button id="down">DOWN</button>
           <button id="reset" onClick={this.reset}>reset</button>
         </div>
-        <form>
-          <input id="email" type="email" placeholder="type email"></input>
+        <form onSubmit={this.onSubmit}>
+          <input onChange={this.onChange} value={this.state.email} id="email" type="email" placeholder="type email"></input>
           <input id="submit" type="submit"></input>
         </form>
       </div>
