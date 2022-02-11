@@ -2,14 +2,15 @@ import React from 'react'
 import axios from 'axios';
 
 export default class AppClass extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      x: 2,
-      y: 2,
-      steps: 0,
+  // constructor(props) {
+  //   super(props);
+
+    state = {
+      form: [{ x: 2, y: 2, steps: 0 }],
+      email: '',
+      error: '',
     }
-  }
+  
 
   // moveSqDown = () => {
   //   this.setState({ yoffset: this.state.yoffset + this.state.delta });
@@ -41,14 +42,35 @@ export default class AppClass extends React.Component {
   //   })
   // }
 
+  onChange = evt => {
+    const { value, steps } = evt.target;
+    this.setState({ ...this.state, [steps]: value })
+  }
+
+  onSubmit = evt => {
+    evt.preventDefault()
+    const payload = { email: this.state.email };
+    axios.post('http://localhost:9000/api/result', payload)
+      .then(res => {
+        console.log(res)
+        this.setState({ ...this.state, form: res.data.email })
+      })
+      .catch(err => {
+        console.error(err);
+      })
+  }
+
   reset = () => {
-    this.setState({
-      ...this.state
+    this.setState({ 
+      ...this.state,
+      form: [{ x: 2, y: 2, steps: 0 }],
+      email: '',
+      error: '',
     })
   }
 
   render() {
-    console.log(this.props)
+    // console.log(this.props)
 
     const { className } = this.props
     return (
@@ -72,10 +94,10 @@ export default class AppClass extends React.Component {
           <h3 id="message"></h3>
         </div>
         <div id="keypad">
-          <button id="left" onClick={this.moveSqLeft}>LEFT</button>
-          <button id="up" onClick={this.moveSqUp}>UP</button>
-          <button id="right"onClick={this.moveSqRight}>RIGHT</button>
-          <button id="down" onClick={this.moveSqDown}>DOWN</button>
+          <button id="left">LEFT</button>
+          <button id="up">UP</button>
+          <button id="right">RIGHT</button>
+          <button id="down">DOWN</button>
           <button id="reset" onClick={this.reset}>reset</button>
         </div>
         <form>
