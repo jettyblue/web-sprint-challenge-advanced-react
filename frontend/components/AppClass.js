@@ -95,9 +95,9 @@ export default class AppClass extends React.Component {
         </div>
         <div id="keypad">
           <button onClick={this.onChange} id="left">LEFT</button>
-          <button id="up">UP</button>
-          <button id="right">RIGHT</button>
-          <button id="down">DOWN</button>
+          <button onClick={this.onChange} id="up">UP</button>
+          <button onClick={this.onChange} id="right">RIGHT</button>
+          <button onClick={this.onChange} id="down">DOWN</button>
           <button id="reset" onClick={this.reset}>reset</button>
         </div>
         <form onSubmit={this.onSubmit}>
