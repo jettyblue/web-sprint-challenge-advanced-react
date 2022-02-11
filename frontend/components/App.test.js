@@ -6,6 +6,17 @@ import AppClass from './AppClass';
 import AppFunctional from './AppFunctional';
 
 // Write your tests here
+let submit, emailInput
+
+beforeEach(() => {
+  render(<AppClass />)
+  submit = screen.queryByText('submit')
+  emailInput = screen.queryAllByPlaceholderText('type email')
+})
+afterEach(() => {
+  document.body.innerHTML = ''
+})
+
 test('sanity', () => {
   expect(true).toBe(false)
 })
