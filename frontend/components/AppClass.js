@@ -12,6 +12,10 @@ export default class AppClass extends React.Component {
     }
   
 
+    // TESTING TO MAKE SURE COMMITS PUSH TO GITHUB
+
+
+
   // moveSqDown = () => {
   //   this.setState({ yoffset: this.state.yoffset + this.state.delta });
   // }
