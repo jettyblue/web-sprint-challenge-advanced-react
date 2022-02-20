@@ -9,14 +9,8 @@ export default function AppFunctional(props) {
     email: '',
     message: ''
   })
-  // posArray[2][0]
 
-  const handleChange = evt => {
-    setState({
-      ...state, email: evt.target.value
-    })
-  }
-
+  // handle change, submit, reset
     const handleSubmit = evt => {
       evt.preventDefault();
       const payload = {
@@ -51,25 +45,111 @@ export default function AppFunctional(props) {
           });
         });
     }
-    
-  // console.log(AppFunctional);
+
+    const handleChange = evt => {
+      setState({
+        ...state, email: evt.target.value
+      });
+    }
+
+    const handleReset = () => {
+      setState({
+        ...state,
+        x: 2,
+        y: 2,
+        steps: 0,
+        message: ''
+      });
+    }
+
+    // axis movement
+    const handleXAdd = () => {
+      state.x <= 2 ?
+      setState({
+        ...state,
+        x: state.x + 1,
+        steps: state.steps + 1,
+        message: ''
+      }) :
+      setState({ ...state, message: "You can't go right" });
+    }
+
+    const handleXMinus = () => {
+      state.x >= 2 ?
+      setState({
+        ...state,
+        x: state.x - 1,
+        steps: state.steps + 1,
+        message: ''
+      }) :
+      setState({ ...state, message: "You can't go left" });
+    }
+
+    const handleYAdd = () => {
+      state.y >= 2 ?
+      setState({
+        ...state,
+        y: state.y - 1,
+        steps: state.steps + 1,
+        message: ''
+      }) :
+      setState({ ...state, message: "You can't go up" });
+    }
+
+    const handleYMinus = () => {
+      state.y <= 2 ?
+      setState({
+        ...state,
+        y: state.y + 1,
+        steps: state.steps + 1,
+        message: ''
+      }) :
+      setState({ ...state, message: "You can't go down" });
+    }
+
   return (
     <>
       <div id="wrapper" className={props.className}>
         <div className="info">
-          <h3 id="coordinates">Coordinates (2, 2)</h3>
-          <h3 id="steps">You moved 0 times</h3>
+          <h3 id="coordinates">Coordinates ({state.x}, {state.y})</h3>
+          <h3 id="steps">You moved {state.steps} {state.steps === 1 ? 'time' : 'times'} times</h3>
         </div>
         <div id="grid">
-          <div className="square"></div>
-          <div className="square"></div>
-          <div className="square"></div>
-          <div className="square"></div>
-          <div className="square active">B</div>
-          <div className="square"></div>
-          <div className="square"></div>
-          <div className="square"></div>
-          <div className="square"></div>
+          <div className= {state.x === 1 && state.y === 1 ? "square active" : "square"}>
+              {state.x === 1 && state.y === 1 ? "B" : ''}
+            </div>
+
+            <div className= {state.x === 2 && state.y === 1 ? "square active" : "square"}>
+              {state.x === 2 && state.y === 1 ? "B" : ''}
+            </div>
+
+            <div className= {state.x === 3 && state.y === 1 ? "square active" : "square"}>
+              {state.x === 3 && state.y === 1 ? "B" : ''}
+            </div>
+
+            <div className= {state.x === 1 && state.y === 2 ? "square active" : "square"}>
+              {state.x === 1 && state.y === 2 ? "B" : ''}
+            </div>
+
+            <div className= {state.x === 2 && state.y === 2 ? "square active" : "square"}>
+              {state.x === 2 && state.y === 2 ? "B" : ''}
+            </div>
+
+            <div className= {state.x === 3 && state.y === 2 ? "square active" : "square"}>
+              {state.x === 3 && state.y === 2 ? "B" : ''}
+            </div>
+
+            <div className= {state.x === 1 && state.y === 3 ? "square active" : "square"}>
+              {state.x === 1 && state.y === 3 ? "B" : ''}
+            </div>
+
+            <div className= {state.x === 2 && state.y === 3 ? "square active" : "square"}>
+              {state.x === 2 && state.y === 3 ? "B" : ''}
+            </div>
+
+            <div className= {state.x === 3 && state.y === 3 ? "square active" : "square"}>
+              {state.x === 3 && state.y === 3 ? "B" : ''}
+            </div>
         </div>
         <div className="info">
           <h3 id="message"></h3>

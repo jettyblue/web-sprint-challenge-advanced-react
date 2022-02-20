@@ -10,6 +10,7 @@ export default class AppClass extends React.Component {
     message: ''
   }
 
+  // handle change, submit, reset
   handleSubmit = evt => {
     evt.preventDefault()
     const payload = {
@@ -63,6 +64,7 @@ export default class AppClass extends React.Component {
     });
   }
 
+  // axis movement
   handleXAdd = () => {
     this.state.x <= 2 ?
     this.setState({
@@ -113,7 +115,7 @@ export default class AppClass extends React.Component {
       <div id="wrapper" className={className}>
         <div className="info">
           <h3 id="coordinates">Coordinates ({this.state.x}, {this.state.y})</h3>
-          <h3 id="steps">You moved {this.state.steps} times</h3>
+          <h3 id="steps">You moved {this.state.steps} {this.state.steps === 1 ? 'time' : 'times'}</h3>
         </div>
         <div id="grid">
           <div className= {this.state.x === 1 && this.state.y === 1 ? "square active" : "square"}>
