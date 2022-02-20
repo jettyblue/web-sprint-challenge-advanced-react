@@ -21,7 +21,6 @@ export default class AppClass extends React.Component {
     }
     axios.post('http://localhost:9000/api/result', payload)
       .then(res => {
-        console.log(res.data)
         this.setState({
           ...this.state,
           email: '',
@@ -113,10 +112,12 @@ export default class AppClass extends React.Component {
     const { className } = this.props
     return (
       <div id="wrapper" className={className}>
+
         <div className="info">
           <h3 id="coordinates">Coordinates ({this.state.x}, {this.state.y})</h3>
           <h3 id="steps">You moved {this.state.steps} {this.state.steps === 1 ? 'time' : 'times'}</h3>
         </div>
+
         <div id="grid">
           <div className= {this.state.x === 1 && this.state.y === 1 ? "square active" : "square"}>
             {this.state.x === 1 && this.state.y === 1 ? "B" : ''}
@@ -153,16 +154,8 @@ export default class AppClass extends React.Component {
           <div className= {this.state.x === 3 && this.state.y === 3 ? "square active" : "square"}>
             {this.state.x === 3 && this.state.y === 3 ? "B" : ''}
           </div>
-
-          {/* <div className="square active">B</div>
-          <div className="square active">B</div>
-          <div className="square active">B</div>
-          <div className="square active">B</div>
-          <div className="square active">B</div>
-          <div className="square active">B</div>
-          <div className="square active">B</div>
-          <div className="square active">B</div> */}
         </div>
+
         <div className="info">
           <h3 id="message">{this.state.message}</h3>
         </div>
@@ -173,6 +166,7 @@ export default class AppClass extends React.Component {
           <button onClick={this.handleYMinus} id="down">DOWN</button>
           <button onClick={this.handleReset} id="reset">reset</button>
         </div>
+
         <form onSubmit={this.handleSubmit}>
           <input onChange={this.handleChange} value={this.state.email} id="email" type="email" placeholder="type email"></input>
           <input id="submit" type="submit"></input>

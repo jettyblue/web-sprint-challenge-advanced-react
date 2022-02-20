@@ -58,6 +58,7 @@ export default function AppFunctional(props) {
         x: 2,
         y: 2,
         steps: 0,
+        email: '',
         message: ''
       });
     }
@@ -108,65 +109,67 @@ export default function AppFunctional(props) {
     }
 
   return (
-    <>
-      <div id="wrapper" className={props.className}>
-        <div className="info">
-          <h3 id="coordinates">Coordinates ({state.x}, {state.y})</h3>
-          <h3 id="steps">You moved {state.steps} {state.steps === 1 ? 'time' : 'times'} times</h3>
-        </div>
-        <div id="grid">
-          <div className= {state.x === 1 && state.y === 1 ? "square active" : "square"}>
-              {state.x === 1 && state.y === 1 ? "B" : ''}
-            </div>
+    <div id="wrapper" className={props.className}>
 
-            <div className= {state.x === 2 && state.y === 1 ? "square active" : "square"}>
-              {state.x === 2 && state.y === 1 ? "B" : ''}
-            </div>
-
-            <div className= {state.x === 3 && state.y === 1 ? "square active" : "square"}>
-              {state.x === 3 && state.y === 1 ? "B" : ''}
-            </div>
-
-            <div className= {state.x === 1 && state.y === 2 ? "square active" : "square"}>
-              {state.x === 1 && state.y === 2 ? "B" : ''}
-            </div>
-
-            <div className= {state.x === 2 && state.y === 2 ? "square active" : "square"}>
-              {state.x === 2 && state.y === 2 ? "B" : ''}
-            </div>
-
-            <div className= {state.x === 3 && state.y === 2 ? "square active" : "square"}>
-              {state.x === 3 && state.y === 2 ? "B" : ''}
-            </div>
-
-            <div className= {state.x === 1 && state.y === 3 ? "square active" : "square"}>
-              {state.x === 1 && state.y === 3 ? "B" : ''}
-            </div>
-
-            <div className= {state.x === 2 && state.y === 3 ? "square active" : "square"}>
-              {state.x === 2 && state.y === 3 ? "B" : ''}
-            </div>
-
-            <div className= {state.x === 3 && state.y === 3 ? "square active" : "square"}>
-              {state.x === 3 && state.y === 3 ? "B" : ''}
-            </div>
-        </div>
-        <div className="info">
-          <h3 id="message"></h3>
-        </div>
-        <div id="keypad">
-          <button id="left" onClick={handleChange}>LEFT</button>
-          <button id="up">UP</button>
-          <button id="right">RIGHT</button>
-          <button id="down">DOWN</button>
-          <button id="reset">reset</button>
-        </div>
-        <form onSubmit={handleSubmit}>
-          <input onChange={handleChange} id="email" type="email" placeholder="type email"></input>
-          <input id="submit" type="submit"></input>
-        </form>
+      <div className="info">
+        <h3 id="coordinates">Coordinates ({state.x}, {state.y})</h3>
+        <h3 id="steps">You moved {state.steps} {state.steps === 1 ? 'time' : 'times'}</h3>
       </div>
-    </>
+
+      <div id="grid">
+        <div className= {state.x === 1 && state.y === 1 ? "square active" : "square"}>
+            {state.x === 1 && state.y === 1 ? "B" : ''}
+          </div>
+
+          <div className= {state.x === 2 && state.y === 1 ? "square active" : "square"}>
+            {state.x === 2 && state.y === 1 ? "B" : ''}
+          </div>
+
+          <div className= {state.x === 3 && state.y === 1 ? "square active" : "square"}>
+            {state.x === 3 && state.y === 1 ? "B" : ''}
+          </div>
+
+          <div className= {state.x === 1 && state.y === 2 ? "square active" : "square"}>
+            {state.x === 1 && state.y === 2 ? "B" : ''}
+          </div>
+
+          <div className= {state.x === 2 && state.y === 2 ? "square active" : "square"}>
+            {state.x === 2 && state.y === 2 ? "B" : ''}
+          </div>
+
+          <div className= {state.x === 3 && state.y === 2 ? "square active" : "square"}>
+            {state.x === 3 && state.y === 2 ? "B" : ''}
+          </div>
+
+          <div className= {state.x === 1 && state.y === 3 ? "square active" : "square"}>
+            {state.x === 1 && state.y === 3 ? "B" : ''}
+          </div>
+
+          <div className= {state.x === 2 && state.y === 3 ? "square active" : "square"}>
+            {state.x === 2 && state.y === 3 ? "B" : ''}
+          </div>
+
+          <div className= {state.x === 3 && state.y === 3 ? "square active" : "square"}>
+            {state.x === 3 && state.y === 3 ? "B" : ''}
+          </div>
+      </div>
+
+      <div className="info">
+        <h3 id="message">{state.message}</h3>
+      </div>
+      <div id="keypad">
+        <button onClick={handleXMinus} id="left">LEFT</button>
+        <button onClick={handleYAdd} id="up">UP</button>
+        <button onClick={handleXAdd} id="right">RIGHT</button>
+        <button onClick={handleYMinus} id="down">DOWN</button>
+        <button onClick={handleReset} id="reset">reset</button>
+      </div>
+
+      <form onSubmit={handleSubmit}>
+        <input onChange={handleChange} value={state.email} id="email" type="email" placeholder="type email"></input>
+        <input id="submit" type="submit"></input>
+      </form>
+    </div>
   )
 }
 
