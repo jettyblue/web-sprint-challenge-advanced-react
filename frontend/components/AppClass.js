@@ -48,8 +48,7 @@ export default class AppClass extends React.Component {
 
   handleChange = evt => {
     this.setState({
-      ...this.state,
-      email: evt.target.value
+      ...this.state, email: evt.target.value
     });
   }
 

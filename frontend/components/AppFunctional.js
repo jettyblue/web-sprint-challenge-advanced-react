@@ -2,37 +2,56 @@ import React, { useState } from 'react'
 import axios from 'axios';
 
 export default function AppFunctional(props) {
-  const [grid, setGrid] = useState([]);
-
-  const state = {
-    form: [{ x: 2, y: 2, steps: 0 }],
+  const [state, setState] = useState({
+    x: 2,
+    y: 2,
+    steps: 0,
     email: '',
-    error: '',
-  }
-
-  const posArray = [
-    [0, 0, 0],
-    [0, 0, 0],
-    [0, 0, 0]
-  ]
-
+    message: ''
+  })
   // posArray[2][0]
 
   const handleChange = evt => {
-    const { value, steps } = evt.target;
-      console.log(value, steps);
-      this.setState({
-        ...this.state,
-        [steps]: value,
-      })
-    // setGrid(evt.target.value)
+    setState({
+      ...state, email: evt.target.value
+    })
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    props.posArray(grid);
-  }
-
+    const handleSubmit = evt => {
+      evt.preventDefault();
+      const payload = {
+        x: state.x,
+        y: state.y,
+        steps: state.steps,
+        email: state.email
+      }
+      axios.post('http://localhost:9000/api/result', payload)
+        .then(res => {
+          setState({
+            ...state,
+            email: '',
+            message: res.data.message
+          })
+        })
+        .catch(err => {
+          state.email !== '' & state.email !== 'foo@bar.baz' ?
+          setState({
+            ...state,
+            message: 'Ouch: email must be a valid email'
+          }) :
+          state.email === 'foo@bar.baz' ?
+          setState({
+            ...state,
+            email: '',
+            message: err.response.data.message
+          }) :
+          setState({
+            ...state,
+            message: 'Ouch: email is required'
+          });
+        });
+    }
+    
   // console.log(AppFunctional);
   return (
     <>
