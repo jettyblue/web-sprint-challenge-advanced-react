@@ -1,9 +1,8 @@
 import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
-import { render, screen, fireEvent, userEvent } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 
 import AppClass from './AppClass';
-import AppFunctional from './AppFunctional';
 
 // Write your tests here
 
@@ -20,10 +19,25 @@ afterEach(() => {
 })
 
 test('sanity', () => {
-  expect(true).toBe(false)
+  expect(true).toBe(true)
 })
 
+test('clicking UP increases the step counter', () => {
+  fireEvent.click(upButton)
+})
 
+test('clicking DOWN increases the step counter', () => {
+  fireEvent.click(downButton)
+})
+
+test('clicking LEFT increases the step counter', () => {
+  fireEvent.click(leftButton)
+})
+
+test('clicking reset resets the step counter', () => {
+  fireEvent.click(leftButton)
+  fireEvent.click(resetButton)
+})
 
 test('that beyonce is NOT on the page', () => {
   const beyonce = screen.queryByText('Beyonce')
